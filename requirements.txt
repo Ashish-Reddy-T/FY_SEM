@@ -1,2 +1,4 @@
-requests
-numpy
+requests==2.31.0
+numpy==1.24.3
+Flask==2.3.3
+gunicorn==21.2.0

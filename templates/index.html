@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Line: A Border Journey</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Special+Elite&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <div id="title-screen" class="screen active">
+            <h1>THE LINE</h1>
+            <h2>A Border Journey</h2>
+            <p class="subtitle">Inspired by 'The Line Becomes a River' by Francisco Cantú</p>
+            
+            <div class="intro-text">
+                <p>The border is not just a line on a map. It's a place where lives intersect, where dreams and desperation collide with policy and duty.</p>
+                <p>In this narrative experience, you will walk in the footsteps of those who cross the border and those who patrol it. Your choices will shape your journey and reveal the complex human stories behind headlines.</p>
+            </div>
+            
+            <button id="start-game" class="btn">Begin Journey</button>
+        </div>
+        
+        <div id="character-creation" class="screen">
+            <h2>Character Creation</h2>
+            
+            <div class="form-group">
+                <label for="character-type">Choose your role:</label>
+                <div class="choice-container">
+                    <div class="choice" data-value="migrant">
+                        <h3>Migrant</h3>
+                        <p>Seeking a better life across the border</p>
+                    </div>
+                    <div class="choice" data-value="patrol">
+                        <h3>Border Patrol</h3>
+                        <p>Enforcing the boundary between nations</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="character-name">Your name:</label>
+                <input type="text" id="character-name" placeholder="Enter your character's name">
+            </div>
+            
+            <div id="migrant-fields" class="conditional-fields">
+                <div class="form-group">
+                    <label for="origin">Where are you from?</label>
+                    <input type="text" id="origin" placeholder="e.g., Central Mexico, Guatemala">
+                </div>
+                
+                <div class="form-group">
+                    <label for="motivation">Why are you making this journey?</label>
+                    <textarea id="motivation" placeholder="Describe your motivation"></textarea>
+                </div>
+            </div>
+            
+            <div id="patrol-fields" class="conditional-fields hidden">
+                <div class="form-group">
+                    <label for="years">How many years have you served in Border Patrol?</label>
+                    <input type="number" id="years" min="1" max="30" value="5">
+                </div>
+            </div>
+            
+            <button id="create-character" class="btn">Begin Your Journey</button>
+        </div>
+        
+        <div id="game-play" class="screen">
+            <div id="status-bar">
+                <div class="status-item" id="location">
+                    <span class="label">Location:</span>
+                    <span class="value">Unknown</span>
+                </div>
+                <div class="status-item" id="health">
+                    <span class="label">Health:</span>
+                    <span class="value">100</span>
+                </div>
+                <div class="status-item migrant-stat" id="water">
+                    <span class="label">Water:</span>
+                    <span class="value">100</span>
+                </div>
+                <div class="status-item migrant-stat" id="food">
+                    <span class="label">Food:</span>
+                    <span class="value">100</span>
+                </div>
+                <div class="status-item migrant-stat" id="hope">
+                    <span class="label">Hope:</span>
+                    <span class="value">100</span>
+                </div>
+                <div class="status-item patrol-stat hidden" id="moral-compass">
+                    <span class="label">Moral:</span>
+                    <span class="value">50</span>
+                </div>
+                <div class="status-item patrol-stat hidden" id="stress">
+                    <span class="label">Stress:</span>
+                    <span class="value">0</span>
+                </div>
+                <div class="status-item" id="turn">
+                    <span class="label">Turn:</span>
+                    <span class="value">0</span>
+                </div>
+            </div>
+            
+            <div id="game-content">
+                <div id="narrative">
+                    <p>Your journey begins...</p>
+                </div>
+                
+                <div id="inventory-panel">
+                    <h3>Inventory</h3>
+                    <ul id="inventory-list">
+                        <!-- Items will be added here -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="command-area">
+                <div id="command-suggestions">
+                    <button class="suggestion-btn" data-command="look">Look</button>
+                    <button class="suggestion-btn" data-command="status">Status</button>
+                    <button class="suggestion-btn" data-command="move north">North</button>
+                    <button class="suggestion-btn" data-command="move south">South</button>
+                    <button class="suggestion-btn" data-command="move east">East</button>
+                    <button class="suggestion-btn" data-command="move west">West</button>
+                    <button class="suggestion-btn" data-command="help">Help</button>
+                </div>
+                <div id="command-input-area">
+                    <input type="text" id="command-input" placeholder="Enter your command...">
+                    <button id="submit-command" class="btn">Submit</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="game-over" class="screen">
+            <h2>Journey Complete</h2>
+            
+            <div id="ending-message">
+                <!-- Ending message will be inserted here -->
+            </div>
+            
+            <div id="journey-summary">
+                <h3>Journey Summary</h3>
+                <div class="summary-stats">
+                    <div class="stat-item">
+                        <span class="label">Distance Traveled:</span>
+                        <span class="value" id="summary-distance">0</span> miles
+                    </div>
+                    <div class="stat-item">
+                        <span class="label">Lives Impacted:</span>
+                        <span class="value" id="summary-lives">0</span> individuals
+                    </div>
+                    <div class="stat-item">
+                        <span class="label">Moral Choices Made:</span>
+                        <span class="value" id="summary-choices">0</span> decisions
+                    </div>
+                    <div class="stat-item">
+                        <span class="label">Traumatic Events:</span>
+                        <span class="value" id="summary-trauma">0</span> incidents
+                    </div>
+                </div>
+                <div class="key-events">
+                    <h4>Key Moments:</h4>
+                    <ul id="summary-events">
+                        <!-- Events will be listed here -->
+                    </ul>
+                </div>
+                <div class="epilogue">
+                    <h4>Epilogue</h4>
+                    <p id="epilogue-text">
+                        <!-- Epilogue will be inserted here -->
+                    </p>
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <button id="play-again" class="btn">Play Again</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+</body>
+</html>

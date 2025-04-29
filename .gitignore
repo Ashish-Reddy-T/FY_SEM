@@ -1,13 +1,6 @@
-# macOS files
-.DS_Store
-
-# Python cache
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Other common ignore
-venv/
+*.py[cod]
+*$py.class
 .env
-*.log
+venv/
+.DS_Store
