@@ -1,9 +1,11 @@
 """
 Embeddings module for 'The Line: A Border Journey'
 
-This module handles the AI interface using Ollama's nomic-embed-text model
+This module handles the AI interface using Ollama's mxbai-embed-large* model
 to create vector representations of game content and enable more natural
 interactions through semantic search.
+
+* can use smaller embedding models like nomic-embed-text if you would like to run it faster on your device!
 """
 
 import json
@@ -16,7 +18,7 @@ from typing import List, Dict, Any, Tuple, Optional
 class EmbeddingsEngine:
     """Handles embeddings generation and semantic search using Ollama's API."""
     
-    def __init__(self, model_name="nomic-embed-text", api_url="http://localhost:11434/api/embeddings"):
+    def __init__(self, model_name="mxbai-embed-large", api_url="http://localhost:11434/api/embeddings"):
         """
         Initialize the embeddings engine.
         

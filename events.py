@@ -293,7 +293,5 @@ def create_common_events():
             [Settlement]
         )
     ]
-
-    # Add more events here as needed
     
     return events
