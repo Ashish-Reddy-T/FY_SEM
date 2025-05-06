@@ -50,7 +50,7 @@ def intro_page():
     print_slow("This game explores the human stories and moral complexities of border")
     print_slow("migration through interactive storytelling. I've created this because")
     print_slow("I am interested in coding and, henceforth I felt narrating a story-line")
-    print_slow("is something cool and creative that can be done!")
+    print_slow("would be something cool and creative at the same time that could be done!")
     print()
 
     print_slow('\nPress Enter to continue ', end='')
